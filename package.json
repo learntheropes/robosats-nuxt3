@@ -1,0 +1,20 @@
+{
+  "name": "robosats-nuxt3-test",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "base-x": "^4.0.0",
+    "got": "^13.0.0",
+    "nuxt": "^3.11.2",
+    "openpgp": "^5.10.1",
+    "socks-proxy-agent": "^7.0.0"
+  },
+  "devDependencies": {
+    "vite-plugin-node-polyfills": "^0.23.0"
+  }
+}
