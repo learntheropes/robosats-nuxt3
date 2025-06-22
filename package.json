@@ -8,8 +8,10 @@
     "start": "nuxt start"
   },
   "dependencies": {
+    "base-ex": "^0.8.1",
     "base-x": "^4.0.0",
     "got": "^13.0.0",
+    "nostr-tools": "^2.15.0",
     "nuxt": "^3.11.2",
     "openpgp": "^5.10.1",
     "socks-proxy-agent": "^7.0.0"
