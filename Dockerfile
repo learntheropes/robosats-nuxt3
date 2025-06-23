@@ -13,6 +13,10 @@ WORKDIR /app
 # Bundle the app source inside the docker image
 COPY . .
 
+# Set app environment variables
+ARG ROBOSATS_COORDINATOR_URL
+ENV ROBOSATS_COORDINATOR_URL=${ROBOSATS_COORDINATOR_URL}
+
 # Install all the app npm packages
 RUN npm install
 
