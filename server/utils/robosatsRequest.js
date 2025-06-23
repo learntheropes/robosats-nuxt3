@@ -4,7 +4,7 @@ import { SocksProxyAgent } from 'socks-proxy-agent'
 const { public: { robosatsCoordinatorUrl }} = useRuntimeConfig()
 
 
-export const robosatsRequest = async ({ authorization, method = "GET", path, body }) => {
+export const robosatsRequest = async ({ authorization, method = "GET", path, body, query }) => {
 
   const url = `${robosatsCoordinatorUrl}${path}`
 
@@ -17,6 +17,7 @@ export const robosatsRequest = async ({ authorization, method = "GET", path, bod
     const response = await got(url, {
       method,
       headers,
+      searchParams: query,
       body: method === 'POST' && body ? JSON.stringify(body) : undefined,
       agent: { http: new SocksProxyAgent('socks5h://127.0.0.1:9050')},
       timeout: { request: 15000 },

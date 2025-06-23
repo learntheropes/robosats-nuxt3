@@ -1,31 +1,46 @@
 <script setup>
 const limits = ref(null)
-const identity = ref(null)
+const robot = ref(null)
 const offer = ref(null)
+const order = ref(null)
 const error = ref(null)
 
 onMounted(async () => {
   try {
-  const { authorization } = await useRobotIdentity()
+    const currency = 'EUR'
+    const { authorization } = await useRobotIdentity()
 
-  limits.value = await $fetch('/api/robosats/limits')
+    limits.value = await $fetch('/api/robosats/limits', {
+      query: { currency }
+    })
 
-  identity.value = await $fetch('/api/robosats/robot', {
-    method: 'POST',
-    body: { authorization },
-    headers: { 'Content-Type': 'application/json' },
-  })
+    robot.value = await $fetch('/api/robosats/robot', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-Robosats-Authorization': authorization,
+      },
+    })
 
-  offer.value = await $fetch('/api/robosats/offer', {
-    method: 'POST',
-    body: { 
-      authorization, 
-      amount: 50, 
-      currency: 'EUR', 
-      paymentMethods: 'Revolut' 
-    },
-    headers: { 'Content-Type': 'application/json' },
-  })
+    offer.value = await $fetch('/api/robosats/offer', {
+      method: 'POST',
+      body: { 
+        amount: 50, 
+        currency, 
+        paymentMethods: 'Revolut' 
+      },
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-Robosats-Authorization': authorization,
+      },
+    })
+
+    order.value = await $fetch('/api/robosats/order', {
+      query: { id: offer.value.id },
+      headers: { 
+        'X-Robosats-Authorization': authorization,
+      },
+    })
 
   } catch (err) {
     error.value = err.message
@@ -36,8 +51,9 @@ onMounted(async () => {
 <template>
   <div>
     <pre v-if="limits">{{ limits }}</pre>
-    <pre v-if="identity">{{ identity }}</pre>
+    <pre v-if="robot">{{ robot }}</pre>
     <pre v-if="offer">{{ offer }}</pre>
+      <pre v-if="order">{{ order }}</pre>
     <p v-if="error" style="color:red">{{ error }}</p>
   </div>
 </template>

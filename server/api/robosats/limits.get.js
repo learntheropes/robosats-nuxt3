@@ -1,6 +1,10 @@
 export default defineEventHandler(async (event) => {
+  const { currency } = getQuery(event)
+  const currencyIndex = getRobosatsCurrency(currency)
 
-  return await robosatsRequest({
+  const response = await robosatsRequest({
     path: '/api/limits/',
   })
+
+  return response[currencyIndex]
 })
