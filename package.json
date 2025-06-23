@@ -8,6 +8,7 @@
     "start": "nuxt start"
   },
   "dependencies": {
+    "@noble/hashes": "^1.8.0",
     "base-ex": "^0.8.1",
     "base-x": "^4.0.0",
     "got": "^13.0.0",
