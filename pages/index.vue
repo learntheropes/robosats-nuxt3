@@ -8,7 +8,7 @@ const error = ref(null)
 onMounted(async () => {
   try {
     const currency = 'EUR'
-    const { authorization } = await useRobotIdentity()
+    const { authorization } = await useRobot()
 
     limits.value = await $fetch('/api/robosats/limits', {
       query: { currency }
@@ -50,6 +50,7 @@ onMounted(async () => {
 
 <template>
   <div>
+    <h1>Robosats API</h1>
     <pre v-if="limits">{{ limits }}</pre>
     <pre v-if="robot">{{ robot }}</pre>
     <pre v-if="offer">{{ offer }}</pre>

@@ -2,7 +2,7 @@ import { sha256 } from 'js-sha256'
 import { sha256  as sha256Hash } from '@noble/hashes/sha2'
 import { getPublicKey } from '@noble/secp256k1';
 
-export const useRobotIdentity = async () => {
+export const useRobot = async () => {
 
   const { genBase62Token, hexToBase91 } = useToken()
   const token = genBase62Token(32)
