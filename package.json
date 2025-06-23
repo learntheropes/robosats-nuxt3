@@ -5,15 +5,15 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "nuxt start"
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@noble/hashes": "^1.8.0",
+    "@noble/secp256k1": "^2.3.0",
     "base-ex": "^0.8.1",
     "base-x": "^4.0.0",
     "got": "^13.0.0",
     "js-sha256": "^0.11.1",
-    "nostr-tools": "^2.15.0",
     "nuxt": "^3.11.2",
     "openpgp": "^5.10.1",
     "socks-proxy-agent": "^7.0.0"

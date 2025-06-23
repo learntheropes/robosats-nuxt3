@@ -1,6 +1,6 @@
 import { sha256 } from 'js-sha256'
-import { sha256  as sha256Hash } from '@noble/hashes/sha256'
-import { getPublicKey } from 'nostr-tools';
+import { sha256  as sha256Hash } from '@noble/hashes/sha2'
+import { getPublicKey } from '@noble/secp256k1';
 
 export const useRobotIdentity = async () => {
 
@@ -20,14 +20,6 @@ export const useRobotIdentity = async () => {
     `| Private ${encryptedPrivateKeyArmored.replace(/\r?\n/g, "\\")}`,
     `| Nostr ${nostrPubKey}`,
   ].join(' ')
-
-  const response = await $fetch('/api/robosats/identity', {
-    method: 'POST',
-    body: { authorization },
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
 
   return {
     token,

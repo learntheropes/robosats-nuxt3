@@ -1,6 +1,11 @@
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      robosatsCoordinatorUrl: process.env.ROBOSATS_COORDINATOR_URL
+    }
+  },
   vite: {
     plugins: [
       nodePolyfills({
