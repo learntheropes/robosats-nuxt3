@@ -4,6 +4,9 @@ import got from 'got'
 export default defineEventHandler(async (event) => {
   const { authorization } = await readBody(event)
 
+  console.log(authorization);
+
+
   const agent = new SocksProxyAgent('socks5h://127.0.0.1:9050')
 
   try {
