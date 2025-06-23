@@ -10,9 +10,6 @@ export default defineNuxtConfig({
           process: true,
         },
       }),
-    ],
-    define: {
-      'process.env.NODE_DEBUG': false,
-    },
+    ]
   },
 })
