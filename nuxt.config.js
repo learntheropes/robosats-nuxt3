@@ -4,8 +4,15 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       nodePolyfills({
-        include: ['crypto'],
-      })
-    ]
-  }
+        include: ['crypto', 'stream', 'buffer', 'util'],
+        globals: {
+          Buffer: true,
+          process: true,
+        },
+      }),
+    ],
+    define: {
+      'process.env.NODE_DEBUG': false,
+    },
+  },
 })

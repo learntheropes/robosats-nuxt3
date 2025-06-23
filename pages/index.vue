@@ -1,17 +1,22 @@
 <script setup>
 
-const { authorization } = await useRobotIdentity()
+const identity = ref(null)
+const error = ref(null)
 
-const response = await $fetch('/api/robosats/identity', {
-  method: 'POST',
-  body: { authorization }
+onMounted(async () => {
+  try {
+    identity.value = await useRobotIdentity()
+    console.log('Authorization header:', identity.value.authorization)
+  } catch (err) {
+    error.value = err.message
+    console.error('Error generating identity:', err)
+  }
 })
-
-console.log('response', response)
 </script>
 
 <template>
   <div>
-    {{ response }}
+    <pre v-if="identity">{{ identity }}</pre>
+    <p v-if="error" style="color:red">{{ error }}</p>
   </div>
 </template>
