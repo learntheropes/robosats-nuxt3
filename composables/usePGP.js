@@ -12,7 +12,7 @@ import {
 } from 'openpgp/lightweight'
 import { sha256 } from 'js-sha256'
 
-const useOpenPGP = () => {
+const usePGP = () => {
   const genKey = async (highEntropyToken) => {
     const d = new Date()
     const keyPair = await generateKey({
@@ -110,4 +110,4 @@ const useOpenPGP = () => {
   }
 }
 
-export default useOpenPGP
+export default usePGP

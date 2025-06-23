@@ -11,7 +11,7 @@ export const useRobot = async () => {
   const nostrSecKey = new Uint8Array(sha256Hash(token))
   const nostrPubKey = getPublicKey(nostrSecKey)
 
-  const { genKey } = useOpenPGP()
+  const { genKey } = usePGP()
   const { publicKeyArmored, encryptedPrivateKeyArmored } = await genKey(token)
 
   const authorization = [
